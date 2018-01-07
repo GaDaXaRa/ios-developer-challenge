@@ -16,6 +16,10 @@ protocol FetchComicsUseCase {
     func fetch(offset: Int, numComics: Int, completion: @escaping (_: [Comic]?) -> ())
 }
 
+protocol ComicsListWireframe {
+    func openComicDetail(_: Comic)
+}
+
 class ComicListPresenter: NSObject {
     private static var comicsPerPage = 20
 
@@ -24,12 +28,15 @@ class ComicListPresenter: NSObject {
             fetchNextComics()
         }
     }
+    
+    private let wireframe: ComicsListWireframe?
     private var comics: [Comic]?
     
     private let fetchComicsUseCase: FetchComicsUseCase
     
-    init(fetchComicsUseCase: FetchComicsUseCase = FetchComics()) {
+    init(fetchComicsUseCase: FetchComicsUseCase = FetchComics(), wireframe: ComicsListWireframe?) {
         self.fetchComicsUseCase = fetchComicsUseCase
+        self.wireframe = wireframe
     }
     
     var numComics: Int {
@@ -40,6 +47,11 @@ class ComicListPresenter: NSObject {
     func comicCellViewModel(at indexPath: IndexPath) -> ComicCellViewModel {
         guard let comics = comics else {fatalError("Trying to access comic before comics are loaded")}
         return comics[indexPath.row]
+    }
+    
+    func didSelectComic(at indexPath: IndexPath) {
+        guard let comics = comics else {return}
+        wireframe?.openComicDetail(comics[indexPath.row])
     }
     
     private func fetchNextComics() {

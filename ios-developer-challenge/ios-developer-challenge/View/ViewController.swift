@@ -19,10 +19,6 @@ class ViewController: UIViewController {
         collectionView.delegate = self
         presenter.view = self
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 }
 
 extension ViewController: ComicListView {
@@ -48,5 +44,7 @@ extension ViewController: UICollectionViewDataSource {
 }
 
 extension ViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter.didSelectComic(at: indexPath)
+    }
 }

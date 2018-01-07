@@ -10,11 +10,19 @@ import UIKit
 
 class ComicsDependencies: NSObject {
 
-    static private let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+    static private let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    static private let comicDetailStoryboard = UIStoryboard(name: "ComicDetail", bundle: nil)
     
-    static func comicsListViewController() -> UIViewController {
-        let viewController = mainStoryBoard.instantiateViewController(withIdentifier: "comicsList") as! ViewController
-        let presenter = ComicListPresenter()
+    static func comicsListViewController(wireframe: ComicsListWireframe) -> UIViewController {
+        let viewController = mainStoryboard.instantiateViewController(withIdentifier: "comicsList") as! ViewController
+        let presenter = ComicListPresenter(wireframe: wireframe)
+        viewController.presenter = presenter
+        return viewController
+    }
+    
+    static func comicDetailViewController(comic: Comic) -> UIViewController {
+        let viewController = comicDetailStoryboard.instantiateViewController(withIdentifier: "ComicDetail") as! ComicDetailViewController
+        let presenter = ComicDetailPresenter(comic: comic)
         viewController.presenter = presenter
         return viewController
     }

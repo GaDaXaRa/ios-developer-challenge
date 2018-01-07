@@ -16,6 +16,10 @@
 		3F166DA920023EA100D559B6 /* FetchComicsTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F166DA820023EA100D559B6 /* FetchComicsTask.swift */; };
 		3F166DAD20024B4900D559B6 /* ComicsDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F166DAC20024B4900D559B6 /* ComicsDependencies.swift */; };
 		3F166DAF2002506B00D559B6 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F166DAE2002506B00D559B6 /* String.swift */; };
+		3F1C5432200282E900F20359 /* ComicDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C5431200282E900F20359 /* ComicDetail.storyboard */; };
+		3F1C54372002851600F20359 /* ComicDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1C54362002851600F20359 /* ComicDetailViewController.swift */; };
+		3F1C5439200285FF00F20359 /* ComicDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1C5438200285FF00F20359 /* ComicDetailPresenter.swift */; };
+		3F1C543C2002871300F20359 /* ComicsWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1C543B2002871300F20359 /* ComicsWireframe.swift */; };
 		3F2A95DC2002330A0019A631 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2A95DB2002330A0019A631 /* AppDelegate.swift */; };
 		3F2A95DE2002330A0019A631 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2A95DD2002330A0019A631 /* ViewController.swift */; };
 		3F2A95E12002330B0019A631 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F2A95DF2002330B0019A631 /* Main.storyboard */; };
@@ -45,6 +49,10 @@
 		3F166DAC20024B4900D559B6 /* ComicsDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsDependencies.swift; sourceTree = "<group>"; };
 		3F166DAE2002506B00D559B6 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		3F166DB12002531D00D559B6 /* ios-developer-challenge-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ios-developer-challenge-Bridging-Header.h"; sourceTree = "<group>"; };
+		3F1C5431200282E900F20359 /* ComicDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ComicDetail.storyboard; sourceTree = "<group>"; };
+		3F1C54362002851600F20359 /* ComicDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicDetailViewController.swift; sourceTree = "<group>"; };
+		3F1C5438200285FF00F20359 /* ComicDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicDetailPresenter.swift; sourceTree = "<group>"; };
+		3F1C543B2002871300F20359 /* ComicsWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsWireframe.swift; sourceTree = "<group>"; };
 		3F2A95D82002330A0019A631 /* ios-developer-challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-developer-challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F2A95DB2002330A0019A631 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F2A95DD2002330A0019A631 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +89,8 @@
 				3F2A95DD2002330A0019A631 /* ViewController.swift */,
 				3F2A95DF2002330B0019A631 /* Main.storyboard */,
 				3F166D9D2002362000D559B6 /* ComicCollectionViewCell.swift */,
+				3F1C5431200282E900F20359 /* ComicDetail.storyboard */,
+				3F1C54362002851600F20359 /* ComicDetailViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -89,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				3F166D982002346100D559B6 /* ComicListPresenter.swift */,
+				3F1C5438200285FF00F20359 /* ComicDetailPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -135,6 +146,14 @@
 			path = Dependencies;
 			sourceTree = "<group>";
 		};
+		3F1C543A200286F100F20359 /* Wireframe */ = {
+			isa = PBXGroup;
+			children = (
+				3F1C543B2002871300F20359 /* ComicsWireframe.swift */,
+			);
+			path = Wireframe;
+			sourceTree = "<group>";
+		};
 		3F2A95CF2002330A0019A631 = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +175,7 @@
 		3F2A95DA2002330A0019A631 /* ios-developer-challenge */ = {
 			isa = PBXGroup;
 			children = (
+				3F1C543A200286F100F20359 /* Wireframe */,
 				3F166DAB20024B2C00D559B6 /* Dependencies */,
 				3F166DA520023AAD00D559B6 /* API Tasks */,
 				3F166DA22002391900D559B6 /* UseCase */,
@@ -268,6 +288,7 @@
 				3F2A95E62002330B0019A631 /* LaunchScreen.storyboard in Resources */,
 				3F2A95E32002330B0019A631 /* Assets.xcassets in Resources */,
 				3F2A95E12002330B0019A631 /* Main.storyboard in Resources */,
+				3F1C5432200282E900F20359 /* ComicDetail.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,13 +307,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F166DAD20024B4900D559B6 /* ComicsDependencies.swift in Sources */,
+				3F1C5439200285FF00F20359 /* ComicDetailPresenter.swift in Sources */,
 				3F166DAF2002506B00D559B6 /* String.swift in Sources */,
 				3F166D992002346100D559B6 /* ComicListPresenter.swift in Sources */,
 				3F166D9E2002362000D559B6 /* ComicCollectionViewCell.swift in Sources */,
 				3F166DA4200239C900D559B6 /* FetchComics.swift in Sources */,
 				3F166D9C2002355900D559B6 /* Comic.swift in Sources */,
 				3F166DA720023AD200D559B6 /* BaseAPITask.swift in Sources */,
+				3F1C54372002851600F20359 /* ComicDetailViewController.swift in Sources */,
 				3F166DA920023EA100D559B6 /* FetchComicsTask.swift in Sources */,
+				3F1C543C2002871300F20359 /* ComicsWireframe.swift in Sources */,
 				3F2A95DE2002330A0019A631 /* ViewController.swift in Sources */,
 				3F166DA12002373100D559B6 /* UIImageView.swift in Sources */,
 				3F2A95DC2002330A0019A631 /* AppDelegate.swift in Sources */,
