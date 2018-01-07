@@ -17,17 +17,20 @@ class BaseAPITask: NSObject {
     var payload = [String: String]()
 
     func sendRequest(path: String = "", completion: @escaping (_: [String: Any]?) -> ()) {
-        payload["apiKey"] = BaseAPITask.privateKey
+        let timeStamp = "\(Int(Date().timeIntervalSince1970))"
+        payload["apikey"] = BaseAPITask.publicKey
+        payload["ts"] = timeStamp
+        payload["hash"] = "\(timeStamp)\(BaseAPITask.privateKey)\(BaseAPITask.publicKey)".md5
         guard let url = compose(path: path, with: payload) else {return}
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard error == nil, let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
                 completion(nil)
                 return
             }
+            
             completion(json)
         }.resume()
     }
-    
     
     private func compose(path: String, with params: [String: String]) -> URL? {
         let url = BaseAPITask.baseURL.appendingPathComponent(path)

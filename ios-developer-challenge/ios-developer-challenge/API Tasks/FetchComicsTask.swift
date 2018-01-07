@@ -13,7 +13,7 @@ class FetchComicsTask: BaseAPITask {
     func fetchComics(offset: Int, numComics: Int, completion: @escaping (_: [String: Any]?) -> ()) {
         payload["format"] = "comic"
         payload["formatType"] = "comic"
-        payload["orderBy"] = "onsaleDate"
+        payload["orderBy"] = "-onsaleDate"
         payload["limit"] = "\(numComics)"
         payload["offset"] = "\(offset)"
         sendRequest(path: "comics", completion: completion)
