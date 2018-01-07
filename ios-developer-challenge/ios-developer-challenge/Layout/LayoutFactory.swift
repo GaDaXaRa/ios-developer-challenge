@@ -20,7 +20,7 @@ class LayoutFactory: NSObject {
         layout.minimumInteritemSpacing = spacing
         layout.minimumLineSpacing = spacing
         layout.sectionInset = UIEdgeInsets(top: margins, left: margins, bottom: margins, right: margins)
-        let itemHeight = (UIScreen.main.bounds.height - spacing * (CGFloat(numRows) - 2) - 2 * margins) / CGFloat(numRows)
+        let itemHeight = (UIScreen.main.bounds.height - spacing * CGFloat(numRows) - 2 * margins) / CGFloat(numRows)
         let itemWidth = itemHeight * aspectRatio
         layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
         layout.scrollDirection = .horizontal
