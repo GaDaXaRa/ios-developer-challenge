@@ -9,7 +9,6 @@
 import UIKit
 
 protocol ComicListView: class {
-    func reload()
     func insertComics(at indexPaths: [IndexPath], completion: @escaping () -> ())
 }
 

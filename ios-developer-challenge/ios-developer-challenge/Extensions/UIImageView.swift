@@ -11,7 +11,8 @@ import UIKit
 extension UIImageView {
     func imageFrom(url: URL?) {
         guard let url = url else {return}
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
+        let session = URLSession.init(configuration: URLSessionConfiguration.default)
+        session.dataTask(with: url) { (data, response, error) in
             guard
                 error == nil,
                 let data = data,

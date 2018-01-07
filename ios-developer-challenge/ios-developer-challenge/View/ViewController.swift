@@ -22,11 +22,6 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: ComicListView {
-    func reload() {
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-        }        
-    }
     
     func insertComics(at indexPaths: [IndexPath], completion: @escaping () -> ()) {
         DispatchQueue.main.async {
