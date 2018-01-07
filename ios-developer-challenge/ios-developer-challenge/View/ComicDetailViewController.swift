@@ -25,7 +25,7 @@ class ComicDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        scrollView.contentInset = UIEdgeInsetsMake(200, 0, 0, 0)
+        scrollView.contentInset = UIEdgeInsetsMake(UIScreen.main.bounds.height / 2, 0, 0, 0)
         presenter.view = self
     }
 }
@@ -33,8 +33,10 @@ class ComicDetailViewController: UIViewController {
 extension ComicDetailViewController: ComicDetailView {
     
     func configure(with viewModel: ComicDetailViewModel) {
-        comicImage.imageFrom(url: viewModel.imageUrl)
-        titleLabel.text = viewModel.title
-        descriptionLabel.text = viewModel.description
+        DispatchQueue.main.async {
+            self.comicImage.imageFrom(url: viewModel.imageUrl)
+            self.titleLabel.text = viewModel.title
+            self.descriptionLabel.text = viewModel.description
+        }
     }
 }
