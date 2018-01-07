@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -35,19 +36,30 @@
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2z1-UO-jmz">
+                                                    <rect key="frame" x="18" y="68" width="64" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C2W-5g-7jK">
                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
+                                        <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="C2W-5g-7jK" secondAttribute="trailing" id="EpK-Da-j43"/>
+                                            <constraint firstItem="2z1-UO-jmz" firstAttribute="leading" secondItem="9XB-bM-FIC" secondAttribute="leadingMargin" constant="10" id="d17-QF-S1v"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="2z1-UO-jmz" secondAttribute="trailing" constant="10" id="du4-ty-VuN"/>
+                                            <constraint firstItem="2z1-UO-jmz" firstAttribute="centerY" secondItem="9XB-bM-FIC" secondAttribute="centerY" id="tke-ew-DdT"/>
                                             <constraint firstAttribute="bottom" secondItem="C2W-5g-7jK" secondAttribute="bottom" id="uNt-pQ-9Pz"/>
                                             <constraint firstItem="C2W-5g-7jK" firstAttribute="top" secondItem="9XB-bM-FIC" secondAttribute="top" id="ufO-cx-NRo"/>
                                             <constraint firstItem="C2W-5g-7jK" firstAttribute="leading" secondItem="9XB-bM-FIC" secondAttribute="leading" id="x4u-Nb-Elb"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="comicImage" destination="C2W-5g-7jK" id="kWJ-9E-JBb"/>
+                                            <outlet property="titleLabel" destination="2z1-UO-jmz" id="b3W-9u-6Xa"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

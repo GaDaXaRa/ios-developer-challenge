@@ -10,14 +10,17 @@ import UIKit
 
 protocol ComicCellViewModel {
     var imageUrl: URL? {get}
+    var title: String {get}
 }
 
 class ComicCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var comicImage: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
     
     func configure(with viewModel: ComicCellViewModel) {
         DispatchQueue.main.async {
             self.comicImage.imageFrom(url: viewModel.imageUrl)
+            self.titleLabel.text = viewModel.title
         }
     }
     
