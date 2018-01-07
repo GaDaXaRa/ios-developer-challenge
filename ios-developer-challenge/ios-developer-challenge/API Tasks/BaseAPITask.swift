@@ -13,14 +13,10 @@ class BaseAPITask: NSObject {
     private static let publicKey = "3424f0c290722b12ed2ded28b19ae8c1"
     private static let privateKey = "f975fba35917f080bda1ba66c5fddbf1467c1070"
     
-    
     var payload = [String: String]()
 
     func sendRequest(path: String = "", completion: @escaping (_: [String: Any]?) -> ()) {
-        let timeStamp = "\(Int(Date().timeIntervalSince1970))"
-        payload["apikey"] = BaseAPITask.publicKey
-        payload["ts"] = timeStamp
-        payload["hash"] = "\(timeStamp)\(BaseAPITask.privateKey)\(BaseAPITask.publicKey)".md5
+        addCommonPayloadParams()
         guard let url = compose(path: path, with: payload) else {return}
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard error == nil, let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
@@ -30,6 +26,13 @@ class BaseAPITask: NSObject {
             
             completion(json)
         }.resume()
+    }
+    
+    private func addCommonPayloadParams() {
+        let timeStamp = "\(Int(Date().timeIntervalSince1970))"
+        payload["apikey"] = BaseAPITask.publicKey
+        payload["ts"] = timeStamp
+        payload["hash"] = "\(timeStamp)\(BaseAPITask.privateKey)\(BaseAPITask.publicKey)".md5
     }
     
     private func compose(path: String, with params: [String: String]) -> URL? {
