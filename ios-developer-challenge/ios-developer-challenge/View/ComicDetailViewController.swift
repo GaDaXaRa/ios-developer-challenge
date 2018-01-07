@@ -28,6 +28,11 @@ class ComicDetailViewController: UIViewController {
         scrollView.contentInset = UIEdgeInsetsMake(UIScreen.main.bounds.height / 2, 0, 0, 0)
         presenter.view = self
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = false
+    }
 }
 
 extension ComicDetailViewController: ComicDetailView {
