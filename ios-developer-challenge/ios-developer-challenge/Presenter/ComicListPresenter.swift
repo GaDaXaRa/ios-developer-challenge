@@ -10,6 +10,7 @@ import UIKit
 
 protocol ComicListView: class {
     func reload()
+    func insertComics(at indexPaths: [IndexPath], completion: @escaping () -> ())
 }
 
 protocol FetchComicsUseCase {
@@ -31,6 +32,7 @@ class ComicListPresenter: NSObject {
     
     private let wireframe: ComicsListWireframe?
     private var comics: [Comic]?
+    private var isLoading = false
     
     private let fetchComicsUseCase: FetchComicsUseCase
     
@@ -49,21 +51,44 @@ class ComicListPresenter: NSObject {
         return comics[indexPath.row]
     }
     
+    func willDisplayComic(at indexPath: IndexPath) {
+        guard let comics = comics else {return}
+        if indexPath.row == comics.count - 1 {
+            fetchNextComics()
+        }
+    }
+    
     func didSelectComic(at indexPath: IndexPath) {
         guard let comics = comics else {return}
         wireframe?.openComicDetail(comics[indexPath.row])
     }
     
     private func fetchNextComics() {
+        guard isLoading == false else {return}
+        isLoading = true
         fetchComicsUseCase.fetch(offset: numComics, numComics: ComicListPresenter.comicsPerPage) { [weak self] (newComics) in
-            guard let newComics = newComics else {return}
-            if self?.comics != nil {
-                self?.comics!.append(contentsOf: newComics)
+            guard let newComics = newComics, newComics.count > 0, let strongSelf = self else {return}
+            let newIndexPaths = strongSelf.indexPathsForNewComics(newComics)
+            if strongSelf.comics != nil {
+                strongSelf.comics!.append(contentsOf: newComics)
             } else {
-                self?.comics = newComics
+                strongSelf.comics = newComics
             }
-            self?.view?.reload()
+            
+            strongSelf.view?.insertComics(at: newIndexPaths, completion: {
+                strongSelf.isLoading = false
+            })
         }
+    }
+    
+    private func indexPathsForNewComics(_ newComics: [Comic]) -> [IndexPath] {
+        let comicsCount = comics?.count ?? 0
+        var indexPaths = [IndexPath]()
+        for index in comicsCount...comicsCount + newComics.count - 1 {
+            indexPaths.append(IndexPath(row: index, section: 0))
+        }
+        
+        return indexPaths
     }
 }
 

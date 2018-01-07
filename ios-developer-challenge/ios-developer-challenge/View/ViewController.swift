@@ -27,6 +27,16 @@ extension ViewController: ComicListView {
             self.collectionView.reloadData()
         }        
     }
+    
+    func insertComics(at indexPaths: [IndexPath], completion: @escaping () -> ()) {
+        DispatchQueue.main.async {
+            self.collectionView.performBatchUpdates({
+                self.collectionView.insertItems(at: indexPaths)
+            }, completion: { (completed) in
+                completion()
+            })
+        }
+    }
 }
 
 extension ViewController: UICollectionViewDataSource {
@@ -40,6 +50,10 @@ extension ViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "comicCell", for: indexPath) as! ComicCollectionViewCell
         cell.configure(with: viewModel)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        presenter.willDisplayComic(at: indexPath)
     }
 }
 
